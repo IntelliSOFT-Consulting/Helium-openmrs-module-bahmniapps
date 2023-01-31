@@ -45,6 +45,8 @@ angular.module('bahmni.registration')
                 return $scope.attributesToBeDisabled !== undefined && $scope.attributesToBeDisabled.includes(attribute);
             };
 
+           
+
             function isIdentifierVoided (identifierType) {
                 if ($scope.patient.uuid !== undefined && $rootScope.patientIdentifiers !== undefined) {
                     for (var i = 0; i < $rootScope.patientIdentifiers.length; i++) {
@@ -227,7 +229,22 @@ angular.module('bahmni.registration')
             $scope.$on("$destroy", function () {
                 stateChangeListener();
             });
-
+           
+            $scope.getRegistrationFee = function () {
+                return $http({
+                    url: Bahmni.Common.Constants.globalPropertyUrl,
+                    method: 'GET',
+                    params: {
+                        property: 'RegistrationFee'
+                    },
+                    withCredentials: true
+                }).then(function(results){
+                    $scope.registrationFee = results.data
+                    console.log("What is happening!!",  $scope.registrationFee);
+                })
+            };
+            $scope.getRegistrationFee();  
+    
             $scope.getDeathConcepts = function () {
                 return $http({
                     url: Bahmni.Common.Constants.globalPropertyUrl,
@@ -266,6 +283,8 @@ angular.module('bahmni.registration')
                     return !concept.retired;
                 });
             };
+
+
 
             $scope.filterNamesForLocale = function (jsonNames, locale, nametype) {
                 var localeNames = _.filter(jsonNames.names, function (name) {

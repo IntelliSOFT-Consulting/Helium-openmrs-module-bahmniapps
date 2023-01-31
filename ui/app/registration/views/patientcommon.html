@@ -242,11 +242,20 @@
         <section class="form-field-inline clearfix"
                  ng-repeat="attributeRow in ::patientConfiguration.customAttributeRows()">
             <article class="form-field" ng-repeat="attribute in ::attributeRow"
-                     ng-class="::{'right-form-field' : $index%2 != 0}">
+                     ng-class="::{'right-form-field' : $index%2 != 0}" ng-if="attribute.name !== 'registration fee'">
                 <attribute-types target-model="patient" attribute="::attribute" field-validation="::fieldValidation"
                                  is-auto-complete="isAutoComplete" get-auto-complete-list="getAutoCompleteList"
                                  get-data-results="getDataResults" is-read-only="isReadOnly" handle-update="handleUpdate"
                 ></attribute-types>
+            </article>
+            <article class="form-field" ng-repeat="attribute in ::attributeRow"
+                     ng-class="::{'right-form-field' : $index%2 != 0}" ng-if="attribute.name == 'registration fee'">
+                <attribute-types target-model="patient" attribute="::attribute" field-validation="::fieldValidation"
+                                 is-auto-complete="isAutoComplete" get-auto-complete-list="getAutoCompleteList"
+                                 get-data-results="getDataResults" is-read-only="isReadOnly" handle-update="handleUpdate"
+                ></attribute-types>
+                <label class="control-label" for="regFeeInfo" style="color: green;"> Reg Fee: {{::registrationFee}}
+                </label>
             </article>
         </section>
     </div>

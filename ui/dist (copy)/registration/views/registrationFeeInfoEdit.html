@@ -1,0 +1,13 @@
+<div ng-controller="PatientCommonController">
+    <legend class="registraion_legend" ng-if="::addressLevels.length>0">
+        <span class="mylegend"> {{ ::'REGISTRATION_LABLE_REG_FEE_INFO' | translate}}</span>
+    </legend>
+    <section class="form-field-inline clearfix" ng-repeat="attributeRow in ::patientConfiguration.customAttributeRows()">
+        <article class="form-field" ng-repeat="attribute in ::attributeRow" ng-class="::{'right-form-field' : $index%2 != 0}" ng-if="attribute.name == 'payment_status'">
+            <attribute-types target-model="patient" attribute="::attribute" field-validation="::fieldValidation" is-auto-complete="isAutoComplete" get-auto-complete-list="getAutoCompleteList" get-data-results="getDataResults" handle-update="handleUpdate"></attribute-types>    
+        </article>
+        <article class="form-field" ng-repeat="attribute in ::attributeRow" ng-class="::{'right-form-field' : $index%2 != 0}" ng-if="attribute.name == 'registration fee'">
+            <attribute-types target-model="patient" attribute="::attribute" field-validation="::fieldValidation" is-auto-complete="isAutoComplete" get-auto-complete-list="getAutoCompleteList" get-data-results="getDataResults" is-read-only="isReadOnly" handle-update="handleUpdate"></attribute-types>    
+        </article>
+    </section>
+</div>

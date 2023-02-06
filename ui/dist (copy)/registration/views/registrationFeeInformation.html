@@ -1,0 +1,35 @@
+<div ng-controller="PatientCommonController">
+    <legend class="registraion_legend" ng-if="::addressLevels.length>0">
+        <span class="mylegend"> {{ ::'REGISTRATION_LABLE_REG_FEE_INFO' | translate}}</span>
+    </legend>
+    <article class="form-field existing-patient">
+        <div class="field-attribute">
+            <label class="control-label" for="paymentStatus">Status :  
+            </label>
+            <div class="field-value">
+                <input class="input-label-inline" type="text" id="statusID" disabled="disabled">
+            </div>
+        </div>
+        <article class="form-field existing-patient">
+            <div class="field-attribute">
+                <label class="control-label" for="amount">Amount :
+                </label>
+                <div class="field-value">
+                    <input class="input-label-inline" type="text" id="paidRegFee" disabled="disabled">
+                </div>
+            </div>
+        </article>
+    </article>
+    <article class="form-field existing-patient">
+        <div class="field-attribute">
+            <label class="control-label" for="paymentDate">Payment Date :
+            </label>
+            <div class="field-value">
+                <input class="input-label-inline" type="text" id="paymentDateId" disabled="disabled">
+            </div>
+        </div>
+    </article>
+    <legend class="registraion_legend" ng-if="::addressLevels.length>0">
+        <span class="mylegend"> {{ ::'REGISTRATION_LABLE_PAT_DEMOGRAPHICS_INFO' | translate}}</span>
+    </legend>
+</div>

@@ -103,7 +103,6 @@ angular.module('bahmni.common.conceptSet')
                         observation.value = defaultCodedAnswer;
                     }
                 };
-
                 var getFlattenedObsValues = function (flattenedObs) {
                     return _.reduce(flattenedObs, function (flattenedObsValues, obs) {
                         if (flattenedObsValues[obs.concept.name + '|' + obs.uniqueId] == undefined) {
@@ -426,7 +425,8 @@ angular.module('bahmni.common.conceptSet')
                     conceptSetFocused: "=?",
                     collapseInnerSections: "=?",
                     atLeastOneValueIsSet: "=?",
-                    sectionId: "="
+                    sectionId: "=",
+                    visitSummary: "="
                 },
                 templateUrl: '../common/concept-set/views/conceptSet.html',
                 controller: controller

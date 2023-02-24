@@ -8,7 +8,7 @@
             </button>
         </span>
         <span data-ng-switch-when="forwardAction">
-                <button type="submit" class="right confirm"
+                <button type="submit" id="btn-sub" class="right confirm"
                         ng-click="setSubmitSource('forwardAction')"
                         accesskey="{{ ::activeVisitConfig.shortcutKey | translate }}"
                         ng-bind-html="::activeVisitConfig.translationKey | translate">
@@ -16,6 +16,7 @@
         </span>
         <span ng-if="::showStartVisitButton()" data-ng-switch-when="startVisit">
             <div split-button options="::visitControl.visitTypes"
+                 id="btn-save"
                  primary-option="::visitControl.defaultVisitType"
                  option-text="visitControl.startButtonText"
                  option-click="visitControl.startVisit"

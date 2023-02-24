@@ -3,10 +3,10 @@
 angular.module('bahmni.registration')
     .directive('patientAction', ['$window', '$location', '$state', 'spinner', '$rootScope', '$stateParams',
         '$bahmniCookieStore', 'appService', 'visitService', 'sessionService', 'encounterService',
-        'messagingService', '$translate', 'auditLogService',
+        'messagingService', '$translate', 'auditLogService', '$timeout',
         function ($window, $location, $state, spinner, $rootScope, $stateParams,
                   $bahmniCookieStore, appService, visitService, sessionService, encounterService,
-                  messagingService, $translate, auditLogService) {
+                  messagingService, $translate, auditLogService, $timeout) {
             var controller = function ($scope) {
                 var self = this;
                 var uuid = $stateParams.patientUuid;

@@ -34,7 +34,7 @@
                             </div>
                             <div class="clearfix">
                                 <article ng-if="!isFormTemplate(conceptSet)" class="fl obs-section-form">
-                                    <concept-set concept-set-name="::conceptSet.options.conceptName" required="::conceptSet.options.required" patient="patient" observations="observations"
+                                    <concept-set concept-set-name="::conceptSet.options.conceptName" visit-summary="::visitSummary" required="::conceptSet.options.required" patient="patient" observations="observations"
                                                  obs-scope="::conceptSet.options.scope" show-title="false" concept-set-focused="::$index === 0"></concept-set>
                                 </article>
                                 <article ng-if="isFormTemplate(conceptSet)" class="fl obs-section-form" id={{::conceptSet.formUuid}}>

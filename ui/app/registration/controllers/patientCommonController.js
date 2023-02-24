@@ -239,15 +239,6 @@ angular.module('bahmni.registration')
                 });
             };
             $scope.getRegistrationFee();
-            $scope.disableRegistrationFeeAttributes = function (fieldName) {
-                var promise = $timeout(function () {
-                    document.getElementById("registration fee").disabled = "true";
-                    document.getElementById("payment_status").disabled = "true";
-                }, 300);
-
-                return promise;
-            };
-            $scope.disableRegistrationFeeAttributes();
             $scope.getDeathConcepts = function () {
                 return $http({
                     url: Bahmni.Common.Constants.globalPropertyUrl,

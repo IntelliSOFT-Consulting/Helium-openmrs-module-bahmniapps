@@ -79,6 +79,7 @@ angular.module('bahmni.ipd')
             var loadBedsInfoForWard = function (department) {
                 return wardService.bedsForWard(department.uuid).then(function (response) {
                     var wardDetails = getWardDetails(department);
+                    console.log("wards info", $scope.ward);
                     var rooms = getRoomsForWard(response.data.bedLayouts);
                     $scope.ward = {
                         rooms: rooms,

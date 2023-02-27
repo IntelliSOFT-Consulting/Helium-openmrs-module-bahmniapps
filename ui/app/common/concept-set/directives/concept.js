@@ -1,9 +1,8 @@
 'use strict';
 
 angular.module('bahmni.common.conceptSet')
-    .directive('concept', ['RecursionHelper', 'spinner', '$filter', 'messagingService', '$rootScope', '$translate', 'visitService', '$http',
-        function (RecursionHelper, spinner, $filter, messagingService, $rootScope, $translate, visitService, $http) {
-            var vm = this;
+    .directive('concept', ['RecursionHelper', 'spinner', '$filter', 'messagingService', '$rootScope', '$translate',
+        function (RecursionHelper, spinner, $filter, messagingService, $rootScope, $translate) {
             var link = function (scope) {
                 var hideAbnormalbuttonConfig = scope.observation && scope.observation.conceptUIConfig && scope.observation.conceptUIConfig['hideAbnormalButton'];
                 scope.now = moment().format("YYYY-MM-DD hh:mm:ss");
@@ -60,98 +59,6 @@ angular.module('bahmni.common.conceptSet')
                 scope.hasPDFAsValue = function () {
                     return scope.observation.value && (scope.observation.value.indexOf(".pdf") > 0);
                 };
-
-                scope.serviceFee = 0;
-
-                scope.getGOPDServiceFee = function () {
-                    return $http({
-                        url: Bahmni.Common.Constants.globalPropertyUrl,
-                        method: 'GET',
-                        params: {
-                            property: 'GOPDServiceFee'
-                        },
-                        withCredentials: true
-                    }).then(function (results) {
-                        scope.serviceFee = results.data;
-                        return scope.serviceFee;
-                    });
-                };
-
-                scope.getDentistryServiceFee = function () {
-                    return $http({
-                        url: Bahmni.Common.Constants.globalPropertyUrl,
-                        method: 'GET',
-                        params: {
-                            property: 'DentistryServiceFee'
-                        },
-                        withCredentials: true
-                    }).then(function (results) {
-                        scope.serviceFee = results.data;
-                        return scope.serviceFee;
-                    });
-                };
-
-                scope.getPediastricsServiceFee = function () {
-                    return $http({
-                        url: Bahmni.Common.Constants.globalPropertyUrl,
-                        method: 'GET',
-                        params: {
-                            property: 'PediatricsServiceFee'
-                        },
-                        withCredentials: true
-                    }).then(function (results) {
-                        scope.serviceFee = results.data;
-                        return scope.serviceFee;
-                    });
-                };
-
-                scope.getSurgeryServiceFee = function () {
-                    return $http({
-                        url: Bahmni.Common.Constants.globalPropertyUrl,
-                        method: 'GET',
-                        params: {
-                            property: 'SurgeryServiceFee'
-                        },
-                        withCredentials: true
-                    }).then(function (results) {
-                        scope.serviceFee = results.data;
-                        return scope.serviceFee;
-                    });
-                };
-
-                scope.getMOPDServiceFee = function () {
-                    return $http({
-                        url: Bahmni.Common.Constants.globalPropertyUrl,
-                        method: 'GET',
-                        params: {
-                            property: 'MOPDServiceFee'
-                        },
-                        withCredentials: true
-                    }).then(function (results) {
-                        scope.serviceFee = results.data;
-                        return scope.serviceFee;
-                    });
-                };
-
-                scope.visitType = scope.visitSummary.visitType;
-
-                scope.getServiceFee = function (visitType) {
-                    switch (scope.visitType) {
-                    case 'MOPD':
-                        return scope.getMOPDServiceFee();
-                    case 'GOPD':
-                        return scope.getGOPDServiceFee();
-                    case 'Surgery':
-                        return scope.getSurgeryServiceFee();
-                    case 'Dentistry':
-                        return scope.getDentistryServiceFee();
-                    case 'IPD':
-                        scope.serviceFee = 100;
-                        return scope.serviceFee;
-                    }
-                };
-
-                scope.getServiceFee();
 
                 scope.$watch('collapseInnerSections', function () {
                     scope.collapse = scope.collapseInnerSections && scope.collapseInnerSections.value;
@@ -219,8 +126,7 @@ angular.module('bahmni.common.conceptSet')
                     patient: "=",
                     collapseInnerSections: "=",
                     rootConcept: "&",
-                    hideAbnormalButton: "=",
-                    visitSummary: "="
+                    hideAbnormalButton: "="
                 },
                 templateUrl: '../common/concept-set/views/observation.html'
             };

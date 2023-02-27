@@ -18,6 +18,8 @@ angular.module('bahmni.clinical')
             var fields = ['uuid', 'name:(name,display)', 'names:(uuid,conceptNameType,name)'];
             var customRepresentation = Bahmni.ConceptSet.CustomRepresentationBuilder.build(fields, 'setMembers', numberOfLevels);
             var allConceptSections = [];
+            var historyAndExaminitionsUUID = "c393fd1d-3f10-11e4-adec-0800271c1b75";
+            var vitalsUUID = "c36a7537-3f10-11e4-adec-0800271c1b75";
 
             var init = function () {
                 if (!($scope.allTemplates !== undefined && $scope.allTemplates.length > 0)) {
@@ -26,6 +28,19 @@ angular.module('bahmni.clinical')
                         v: "custom:" + customRepresentation
                     }).then(function (response) {
                         var allTemplates = response.data.results[0].setMembers;
+
+                        var privileges = $rootScope.currentUser.privileges;
+                        for (var i = privileges.length - 1; i >= 0; i--) {
+                            // console.log("Current user privilege::", privileges[i].name);
+                            var userPrivilege = privileges[i].name;
+                            if (userPrivilege == "Doctor") {
+                                for (var i = allTemplates.length - 1; i >= 0; i--) {
+                                    if (allTemplates[i].uuid == historyAndExaminitionsUUID || allTemplates[i].uuid == vitalsUUID) {
+                                        allTemplates.splice(i, 1);
+                                    }
+                                }
+                            }
+                        }
                         createConceptSections(allTemplates);
                         if ($state.params.programUuid) {
                             showOnlyTemplatesFilledInProgram();

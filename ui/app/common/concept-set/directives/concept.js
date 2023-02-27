@@ -133,25 +133,25 @@ angular.module('bahmni.common.conceptSet')
                     });
                 };
 
-                scope.visitType = scope.visitSummary.visitType;
-
-                scope.getServiceFee = function (visitType) {
-                    switch (scope.visitType) {
-                    case 'MOPD':
-                        return scope.getMOPDServiceFee();
-                    case 'GOPD':
-                        return scope.getGOPDServiceFee();
-                    case 'Surgery':
-                        return scope.getSurgeryServiceFee();
-                    case 'Dentistry':
-                        return scope.getDentistryServiceFee();
-                    case 'IPD':
-                        scope.serviceFee = 100;
-                        return scope.serviceFee;
-                    }
-                };
-
-                scope.getServiceFee();
+                if (scope.visitSummary) {
+                    scope.visitType = scope.visitSummary.visitType;
+                    scope.getServiceFee = function (visitType) {
+                        switch (scope.visitType) {
+                        case 'MOPD':
+                            return scope.getMOPDServiceFee();
+                        case 'GOPD':
+                            return scope.getGOPDServiceFee();
+                        case 'Surgery':
+                            return scope.getSurgeryServiceFee();
+                        case 'Dentistry':
+                            return scope.getDentistryServiceFee();
+                        case 'IPD':
+                            scope.serviceFee = 100;
+                            return scope.serviceFee;
+                        }
+                    };
+                    scope.getServiceFee();
+                }
 
                 scope.$watch('collapseInnerSections', function () {
                     scope.collapse = scope.collapseInnerSections && scope.collapseInnerSections.value;

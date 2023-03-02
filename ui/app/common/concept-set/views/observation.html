@@ -192,7 +192,10 @@
                         <span class="details" ng-bind-html="getStringValue(observation.previous)"></span>
                     </div>
 
-                    <div ng-switch-when="html5InputDataType">
+                    <div ng-switch-when="html5InputDataType" ng-if="observation.concept.name != 'Consultation Fee'">
+                        <div ng-include src="'../common/concept-set/views/observationDataTypes/html5DataType.html'"></div>
+                    </div>
+                    <div ng-switch-when="html5InputDataType" ng-if="observation.concept.name === 'Consultation Fee'">
                         <div ng-include src="'../common/concept-set/views/observationDataTypes/html5DataType.html'"></div>
                     </div>
 

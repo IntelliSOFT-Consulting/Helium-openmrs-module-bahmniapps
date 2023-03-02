@@ -1,9 +1,8 @@
 'use strict';
 
 angular.module('bahmni.common.conceptSet')
-    .directive('concept', ['RecursionHelper', 'spinner', '$filter', 'messagingService', '$rootScope', '$translate', 'visitService', '$http',
-        function (RecursionHelper, spinner, $filter, messagingService, $rootScope, $translate, visitService, $http) {
-            var vm = this;
+    .directive('concept', ['RecursionHelper', 'spinner', '$filter', 'messagingService', '$rootScope', '$translate',
+        function (RecursionHelper, spinner, $filter, messagingService, $rootScope, $translate) {
             var link = function (scope) {
                 var hideAbnormalbuttonConfig = scope.observation && scope.observation.conceptUIConfig && scope.observation.conceptUIConfig['hideAbnormalButton'];
                 scope.now = moment().format("YYYY-MM-DD hh:mm:ss");
@@ -60,8 +59,6 @@ angular.module('bahmni.common.conceptSet')
                 scope.hasPDFAsValue = function () {
                     return scope.observation.value && (scope.observation.value.indexOf(".pdf") > 0);
                 };
-
-                scope.serviceFee = 0;
 
                 scope.getGOPDServiceFee = function () {
                     return $http({
@@ -219,8 +216,7 @@ angular.module('bahmni.common.conceptSet')
                     patient: "=",
                     collapseInnerSections: "=",
                     rootConcept: "&",
-                    hideAbnormalButton: "=",
-                    visitSummary: "="
+                    hideAbnormalButton: "="
                 },
                 templateUrl: '../common/concept-set/views/observation.html'
             };

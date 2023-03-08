@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('bahmni.common.conceptSet')
-    .directive('concept', ['RecursionHelper', 'spinner', '$filter', 'messagingService', '$rootScope', '$translate',
-        function (RecursionHelper, spinner, $filter, messagingService, $rootScope, $translate) {
+    .directive('concept', ['RecursionHelper', 'spinner', '$filter', 'messagingService', '$rootScope', '$translate', '$http',
+        function (RecursionHelper, spinner, $filter, messagingService, $rootScope, $translate, $http) {
             var link = function (scope) {
                 var hideAbnormalbuttonConfig = scope.observation && scope.observation.conceptUIConfig && scope.observation.conceptUIConfig['hideAbnormalButton'];
                 scope.now = moment().format("YYYY-MM-DD hh:mm:ss");
@@ -216,7 +216,8 @@ angular.module('bahmni.common.conceptSet')
                     patient: "=",
                     collapseInnerSections: "=",
                     rootConcept: "&",
-                    hideAbnormalButton: "="
+                    hideAbnormalButton: "=",
+                    visitSummary: "="
                 },
                 templateUrl: '../common/concept-set/views/observation.html'
             };

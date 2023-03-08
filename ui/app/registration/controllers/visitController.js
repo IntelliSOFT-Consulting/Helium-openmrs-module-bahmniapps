@@ -133,6 +133,13 @@ angular.module('bahmni.registration')
                     var hasActiveVisit = activeVisitForCurrentLoginLocation.length > 0;
                     vm.visitUuid = hasActiveVisit ? activeVisitForCurrentLoginLocation[0].uuid : "";
                     $scope.canCloseVisit = isUserPrivilegedToCloseVisit() && hasActiveVisit;
+                    if (vm.visitUuid) getVisitTypeName();
+                });
+            };
+
+            var getVisitTypeName = function () {
+                visitService.getVisitSummary(vm.visitUuid).then(function (response) {
+                    $scope.visitSummary = response.data;
                 });
             };
 

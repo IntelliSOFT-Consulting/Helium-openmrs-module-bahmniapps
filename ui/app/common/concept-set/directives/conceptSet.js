@@ -426,7 +426,8 @@ angular.module('bahmni.common.conceptSet')
                     conceptSetFocused: "=?",
                     collapseInnerSections: "=?",
                     atLeastOneValueIsSet: "=?",
-                    sectionId: "="
+                    sectionId: "=",
+                    visitSummary: "="
                 },
                 templateUrl: '../common/concept-set/views/conceptSet.html',
                 controller: controller

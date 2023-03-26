@@ -170,6 +170,13 @@ angular.module('bahmni.common.conceptSet')
                 scope.getBooleanResult = function (value) {
                     return !!value;
                 };
+
+                if (scope.observation) {
+                    if (scope.observation.concept.name === 'Consultation Fee') {
+                        console.log("This is the consultation fee", angular.element('#Consultation Fee').val());
+                    }
+                }
+
                 scope.translatedLabel = function (observation) {
                     if (observation && observation.concept) {
                         var currentLocale = $rootScope.currentUser.userProperties.defaultLocale;
